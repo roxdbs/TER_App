@@ -1,0 +1,101 @@
+[hidden] {
+    display: none;
+}
+
+#page-3 {
+    padding: 0;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: solid #bdb2b2;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    flex: 1;
+    min-height: 70vh;
+}
+
+/*
+.col:first-child {
+    align-items: flex-end;
+    padding-right: 40px;
+}
+
+.col:last-child {
+    align-items: flex-start;
+    padding-left: 40px;
+}
+*/
+
+.col+.col {
+    border-left: 3px solid #bdb2b2;
+}
+
+#btn-expe,
+#btn-start,
+#btn-end {
+    background-color: #D3F9BD;
+}
+
+#btn-expe:hover,
+#btn-start:hover,
+#btn-end:hover {
+    background-color: #c1f4a4;
+}
+
+#btn-BEH1 {
+    background-color: #A1BFF0;
+}
+
+#btn-BEH1:hover {
+    background-color: #83a7df;
+}
+
+.beh1-feedback {
+    animation: beh1Click 0.3s ease-in-out;
+}
+
+@keyframes beh1Click {
+    0% {
+        background-color: #A1BFF0;
+    }
+
+    50% {
+        background-color: #c1d3f1;
+    }
+
+    100% {
+        background-color: #A1BFF0;
+    }
+}
+
+#btn-BEH2,
+#btn-BEH3 {
+    background-color: #F0CBA1;
+}
+
+#btn-BEH2:not(:disabled):hover,
+#btn-BEH3:not(:disabled):hover {
+    background-color: #e0af77;
+}
+
+#btn-BEH2:disabled,
+#btn-BEH3:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.selected {
+    font-weight: bold;
+}
