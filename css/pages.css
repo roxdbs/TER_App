@@ -1,11 +1,3 @@
-[hidden] {
-    display: none;
-}
-
-#page-3 {
-    padding: 0;
-}
-
 .row {
     display: flex;
     flex-direction: row;
@@ -26,17 +18,15 @@
     min-height: 70vh;
 }
 
-/*
 .col:first-child {
     align-items: flex-end;
-    padding-right: 40px;
+    padding-right: 60px;
 }
 
 .col:last-child {
     align-items: flex-start;
-    padding-left: 40px;
+    padding-left: 60px;
 }
-*/
 
 .col+.col {
     border-left: 3px solid #bdb2b2;
@@ -52,6 +42,15 @@
 #btn-start:hover,
 #btn-end:hover {
     background-color: #c1f4a4;
+}
+
+#btn-BEH1,
+#btn-BEH2,
+#btn-BEH3 {
+    font-size: clamp(1.25rem, 2vw, 2rem);
+    padding: clamp(1rem, 2vh, 2.5rem) clamp(1.5rem, 3vw, 3.75rem);
+    min-width: 12.5rem;
+    border-radius: 0.75rem;
 }
 
 #btn-BEH1 {

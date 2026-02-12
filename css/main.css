@@ -11,6 +11,14 @@ body {
     font-size: 1.25rem;
 }
 
+[hidden] {
+    display: none;
+}
+
+#page-3 {
+    padding: 0;
+}
+
 section {
     min-height: 100vh;
 
