@@ -47,10 +47,9 @@
 #btn-BEH1,
 #btn-BEH2,
 #btn-BEH3 {
-    font-size: clamp(1.25rem, 2vw, 2rem);
-    padding: clamp(1.5rem, 2vh, 2.5rem) clamp(2.25rem, 3vw, 3.75rem);
-    min-width: 12.5rem;
-    border-radius: 0.75rem;
+    font-size: clamp(1.25rem, 3vw, 3rem);
+    padding: clamp(1.2rem, 2.5vh, 3rem) clamp(2rem, 4vw, 5rem);
+    min-width: 15rem;
 }
 
 #btn-BEH1 {
