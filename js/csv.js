@@ -6,6 +6,7 @@ export function generateCSV() {
 
     const csvLines = [
         `Identifiant participant, ${state.participantId}`,
+        `Numéro de session, ${state.sessionId}`,
         `Début passation, ${state.startDateTime}`,
         `Fin passation, ${state.endDateTime}`,
         `Durée totale (s), ${state.elapsedTime}`,
@@ -26,7 +27,7 @@ export function generateCSV() {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${state.participantId}.csv`;
+    a.download = `${state.participantId}-${state.sessionId}.csv`;
     a.click();
 
     URL.revokeObjectURL(url);

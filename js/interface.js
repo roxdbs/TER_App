@@ -18,14 +18,24 @@ export function showPage(pageNumber) {
 
 // Gestion des boutons de navigation
 document.getElementById("btn-expe").onclick = () => {
-    const input = document.getElementById("participant-id");
+    const inputPartId = document.getElementById("participant-id");
+    const inputSessIdd = document.querySelector('input[name="session"]:checked')?.value;
 
-    if (!input.value.trim()) {
+    if (!inputPartId.value.trim() && !inputSessIdd) {
+        alert("Veuillez renseigner l'identifiant du participant et le numéro de session.");
+        return;
+    }
+    else if (!inputPartId.value.trim()) {
         alert("Veuillez renseigner l'identifiant du participant.");
         return;
     }
+    else if (!inputSessIdd) {
+        alert("Veuillez sélectionner un numéro de session.");
+        return;
+    }
 
-    state.participantId = input.value.trim();
+    state.participantId = inputPartId.value.trim();
+    state.sessionId = inputSessIdd;
     showPage(2);
     console.log(state);
 }
