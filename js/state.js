@@ -1,6 +1,7 @@
 // Stockage des données
 export const state = {
     participantId: "",
+    sessionId: 0,
 
     // Chrono
     startTime: null,

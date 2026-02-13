@@ -45,6 +45,12 @@ input[type="text"] {
     font-size: 1rem;
 }
 
+.session-number {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
 button {
     padding: 15px 25px;
     border-radius: 8px;
