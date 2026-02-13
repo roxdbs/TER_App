@@ -6,7 +6,7 @@ export function generateCSV() {
 
     const csvLines = [
         `Identifiant participant, ${state.participantId}`,
-        `Numéro de la session, ${state.sessionId}`,
+        `Numéro de session, ${state.sessionId}`,
         `Début passation, ${state.startDateTime}`,
         `Fin passation, ${state.endDateTime}`,
         `Durée totale (s), ${state.elapsedTime}`,

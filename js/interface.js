@@ -35,7 +35,7 @@ document.getElementById("btn-expe").onclick = () => {
     }
 
     state.participantId = inputPartId.value.trim();
-    state.sessionId = inputSessIdd.value;
+    state.sessionId = inputSessIdd;
     showPage(2);
     console.log(state);
 }
