@@ -20,7 +20,15 @@ export const state = {
     sampling: {
         BEH2: [],
         BEH3: [],
-        BEH2Prop: 0,
-        BEH3Prop: 0
+        BEH2Prop: {
+            trueCount: 0,
+            prop: 0,
+            percent: 0
+        },
+        BEH3Prop: {
+            trueCount: 0,
+            prop: 0,
+            percent: 0
+        }
     }
 };

@@ -54,19 +54,16 @@ document.getElementById("btn-end").onclick = () => {
     clearInterval(state.timerId);
     state.timerId = null;
 
-    const beh2Stats = calculateProportion(state.sampling.BEH2);
-    const beh3Stats = calculateProportion(state.sampling.BEH3);
-
-    state.sampling.BEH2Prop = beh2Stats.prop.toFixed(2);
-    state.sampling.BEH3Prop = beh3Stats.prop.toFixed(2);
+    state.sampling.BEH2Prop = calculateProportion(state.sampling.BEH2);
+    state.sampling.BEH3Prop = calculateProportion(state.sampling.BEH3);
 
     document.getElementById("recap-BEH1").textContent = state.BEH1Count;
 
-    document.getElementById("recap-BEH2-percentage").textContent = beh2Stats.percent + " %";
-    document.getElementById("recap-BEH2").textContent = beh2Stats.trueCount + "/" + state.nInterval;
+    document.getElementById("recap-BEH2-percentage").textContent = state.sampling.BEH2Prop.percent + " %";
+    document.getElementById("recap-BEH2").textContent = state.sampling.BEH2Prop.trueCount + "/" + state.nInterval;
 
-    document.getElementById("recap-BEH3-percentage").textContent = beh3Stats.percent + " %";
-    document.getElementById("recap-BEH3").textContent = beh3Stats.trueCount + "/" + state.nInterval;
+    document.getElementById("recap-BEH3-percentage").textContent = state.sampling.BEH3Prop.percent + " %";
+    document.getElementById("recap-BEH3").textContent = state.sampling.BEH3Prop.trueCount + "/" + state.nInterval;
 
     generateCSV();
     showPage(4);
