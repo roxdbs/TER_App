@@ -32,6 +32,12 @@
     border-left: 3px solid #bdb2b2;
 }
 
+.beh-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 1.25vw, 2.5rem);
+}
+
 #btn-expe,
 #btn-start,
 #btn-end {

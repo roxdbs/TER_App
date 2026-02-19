@@ -45,12 +45,31 @@
     <section id="page-3" hidden>
         <div class="row">
             <div class="col">
-                <button id="btn-BEH1">Se mordre</button>
+                <div class="beh-row">
+                    <p>
+                        Nombre d'occurence Se mordre :
+                        <span id="recap-BEH1-live">—</span>
+                    </p>
+                    <button id="btn-BEH1">Se mordre</button>
+                </div>
             </div>
 
             <div class="col">
-                <button id="btn-BEH2" disabled="true">Stéréotypie</button>
-                <button id="btn-BEH3" disabled="true">Hors-Tâche</button>
+                <div class="beh-row">
+                    <button id="btn-BEH2" disabled="true">Stéréotypie</button>
+                    <p>
+                        Pourcentage Stéréotypie :
+                        <span id="recap-BEH2-live">—</span>
+                    </p>
+                </div>
+
+                <div class="beh-row">
+                    <button id="btn-BEH3" disabled="true">Hors-Tâche</button>
+                    <p>
+                        Pourcentage Hors-Tâche :
+                        <span id="recap-BEH3-live">—</span>
+                    </p>
+                </div>
             </div>
         </div>
 
@@ -61,18 +80,27 @@
         <h1>Récapitulatif des observations</h1>
 
         <p>
-            Nombre d'occurences du comportement Se mordre :
+            Nombre d'occurences du comportement <strong>Se mordre</strong> :
             <span id="recap-BEH1">—</span>
-
         </p>
 
         <p>
-            Proportion d'intervalles du comportement Stéréotypie :
+            Proportion d'intervalles du comportement <strong>Séréotypie</strong> en pourcentage :
+            <span id="recap-BEH2-percentage">—</span>
+        </p>
+
+        <p>
+            Proportion d'intervalles du comportement <strong>Stéréotypie</strong> en fraction :
             <span id="recap-BEH2">—</span>
         </p>
 
         <p>
-            Proportion d'intervalles du comportement Hors-Tâche :
+            Proportion d'intervalles du comportement <strong>Hors-Tâche</strong> en pourcentage :
+            <span id="recap-BEH3-percentage">—</span>
+        </p>
+
+        <p>
+            Proportion d'intervalles du comportement <strong>Hors-Tâche</strong> en fraction :
             <span id="recap-BEH3">—</span>
         </p>
     </section>
