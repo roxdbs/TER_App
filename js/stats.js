@@ -3,7 +3,7 @@ export function calculateProportion(array) {
     if (array.length === 0) return { trueCount: 0, prop: 0, percent: 0 };
 
     const trueCount = array.filter(value => value === true).length;
-    const prop = trueCount / array.length;
+    const prop = (trueCount / array.length).toFixed(2);
     return {
         trueCount,
         prop,
