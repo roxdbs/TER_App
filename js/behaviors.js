@@ -1,4 +1,16 @@
 import { state } from "./state.js";
+import { calculateProportion } from "./stats.js";
+
+//Mise à jour des récap de comportements
+export function updateLiveRecap() {
+    document.getElementById("recap-BEH1-live").textContent = state.BEH1Count;
+
+    const beh2Stats = calculateProportion(state.sampling.BEH2);
+    document.getElementById("recap-BEH2-live").textContent = beh2Stats.trueCount + "/" + state.nInterval;
+
+    const beh3Stats = calculateProportion(state.sampling.BEH3);
+    document.getElementById("recap-BEH3-live").textContent = beh3Stats.trueCount + "/" + state.nInterval;
+}
 
 // Enregistrement occurences BEH1
 const beh1Btn = document.getElementById("btn-BEH1");
@@ -6,6 +18,8 @@ const beh1Btn = document.getElementById("btn-BEH1");
 beh1Btn.onclick = () => {
     state.BEH1Count += 1;
     //console.log("BEH1+1");
+
+    updateLiveRecap();
 
     beh1Btn.classList.add("beh1-feedback");
 
@@ -26,7 +40,9 @@ beh2Btn.onclick = () => {
 
     updateSamplingButtonVisual(beh2Btn, newValue);
 
-    console.log("BEH2, intervalle :", state.nInterval, "→", newValue);
+    updateLiveRecap();
+
+    //console.log("BEH2, intervalle :", state.nInterval, "→", newValue);
 };
 
 beh3Btn.onclick = () => {
@@ -37,7 +53,9 @@ beh3Btn.onclick = () => {
 
     updateSamplingButtonVisual(beh3Btn, newValue);
 
-    console.log("BEH3, intervalle :", state.nInterval, "→", newValue);
+    updateLiveRecap();
+
+    //console.log("BEH3, intervalle :", state.nInterval, "→", newValue);
 };
 
 export function enableSamplingButtons() {

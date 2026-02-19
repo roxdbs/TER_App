@@ -1,5 +1,5 @@
 import { state } from "./state.js";
-import { enableSamplingButtons, disableSamplingButtons, updateSamplingButtonVisual, beh2Btn, beh3Btn } from "./behaviors.js"
+import { enableSamplingButtons, disableSamplingButtons, updateSamplingButtonVisual, beh2Btn, beh3Btn, updateLiveRecap } from "./behaviors.js"
 import { showPage } from "./interface.js";
 
 // Constantes temporelles des intervalles
@@ -36,7 +36,7 @@ document.getElementById("btn-start").onclick = () => {
             signal.currentTime = 0;
             signal.play();
 
-            console.log("signal");
+            //console.log("signal");
         }
 
         // Enregistrement pendant la fenêtre et nouvel intervalle
@@ -49,6 +49,8 @@ document.getElementById("btn-start").onclick = () => {
             updateSamplingButtonVisual(beh3Btn, false);
 
             state.nInterval += 1;
+
+            updateLiveRecap();
 
             //console.log("Nouvel intervalle :", state.currentInterval+1);
         }
