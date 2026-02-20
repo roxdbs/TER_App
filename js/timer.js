@@ -9,6 +9,34 @@ const RECORDING_WINDOW = 3000;
 
 const signal = document.getElementById("signal");
 
+const progressFill = document.getElementById("interval-progress-fill");
+
+const progressBar = document.getElementById("interval-progress");
+
+// Remplissage de la barre de progression
+function startProgressAnimation() {
+    if (!progressFill) return;
+
+    progressFill.style.transition = "none";
+    progressFill.style.width = "0%";
+
+    void progressFill.offsetWidth;
+
+    progressFill.style.transition = `width ${INTERVAL_DURATION}s linear`;
+    progressFill.style.width = "100%";
+}
+
+// 2 fonctions pour modifier la couleur pendant la fenêtre d'enregistrement
+function startProgressAnimationRecording() {
+    progressBar.classList.add("recording");
+    progressFill.classList.add("recording");
+}
+
+function stopProgressAnimationRecording() {
+    progressBar.classList.remove("recording");
+    progressFill.classList.remove("recording");
+}
+
 document.getElementById("btn-start").onclick = () => {
     // Enregistrement du début de la passation
     const start = new Date();
@@ -41,6 +69,7 @@ document.getElementById("btn-start").onclick = () => {
 
         // Enregistrement pendant la fenêtre et nouvel intervalle
         if (state.elapsedTime % INTERVAL_DURATION === 0) {
+            startProgressAnimation();
 
             state.sampling.BEH2[state.nInterval] = false;
             state.sampling.BEH3[state.nInterval] = false;
@@ -59,9 +88,12 @@ document.getElementById("btn-start").onclick = () => {
             state.recordingOpen = true;
             enableSamplingButtons();
 
+            startProgressAnimationRecording();
+
             setTimeout(() => {
                 state.recordingOpen = false;
                 disableSamplingButtons();
+                stopProgressAnimationRecording();
                 //console.log("Fenêtre d'enregistrement fermée");
             }, RECORDING_WINDOW);
         }
@@ -69,5 +101,6 @@ document.getElementById("btn-start").onclick = () => {
     }, 1000); //1000ms
 
     showPage(3);
+    startProgressAnimation();
     console.log(state);
 }

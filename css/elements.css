@@ -84,6 +84,31 @@
     }
 }
 
+.progress-bar {
+    width: 100%;
+    height: 1rem;
+    background-color: #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #c1f4a4;
+}
+
+.progress-bar.recording {
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+.progress-fill.recording {
+    background-color: #F0CBA1;
+    outline: 2px solid black;
+}
+
 #btn-BEH2,
 #btn-BEH3 {
     background-color: #F0CBA1;
