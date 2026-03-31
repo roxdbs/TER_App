@@ -91,6 +91,7 @@
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 1rem;
+    border: 2px solid black;
 }
 
 .progress-fill {
@@ -100,7 +101,6 @@
 }
 
 .progress-bar.recording {
-    border: 2px solid black;
     box-sizing: border-box;
 }
 
