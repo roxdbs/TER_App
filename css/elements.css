@@ -41,13 +41,14 @@
 #btn-expe,
 #btn-start,
 #btn-end {
-    background-color: #D3F9BD;
+    background-color: #A899D4;
 }
 
 #btn-expe:hover,
 #btn-start:hover,
 #btn-end:hover {
-    background-color: #c1f4a4;
+    background-color: #9083B7;
+
 }
 
 #btn-BEH1,
@@ -59,11 +60,11 @@
 }
 
 #btn-BEH1 {
-    background-color: #A1BFF0;
+    background-color: #FCD95B;
 }
 
 #btn-BEH1:hover {
-    background-color: #83a7df;
+    background-color: #DFC050;
 }
 
 .beh1-feedback {
@@ -72,15 +73,15 @@
 
 @keyframes beh1Click {
     0% {
-        background-color: #A1BFF0;
+        background-color: #DFC050;
     }
 
     50% {
-        background-color: #c1d3f1;
+        background-color: #C1A645;
     }
 
     100% {
-        background-color: #A1BFF0;
+        background-color: #DFC050;
     }
 }
 
@@ -97,7 +98,7 @@
 .progress-fill {
     height: 100%;
     width: 0%;
-    background-color: #c1f4a4;
+    background-color: #31DF9F;
 }
 
 .progress-bar.recording {
@@ -105,18 +106,18 @@
 }
 
 .progress-fill.recording {
-    background-color: #F0CBA1;
+    background-color: #E05131;
     outline: 2px solid black;
 }
 
 #btn-BEH2,
 #btn-BEH3 {
-    background-color: #F0CBA1;
+    background-color: #FCD95B;
 }
 
 #btn-BEH2:not(:disabled):hover,
 #btn-BEH3:not(:disabled):hover {
-    background-color: #e0af77;
+    background-color: #DFC050;
 }
 
 #btn-BEH2:disabled,
