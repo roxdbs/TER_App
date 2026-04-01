@@ -98,7 +98,7 @@
 .progress-fill {
     height: 100%;
     width: 0%;
-    background-color: #31DF9F;
+    background-color: #E05131;
 }
 
 .progress-bar.recording {
@@ -106,7 +106,7 @@
 }
 
 .progress-fill.recording {
-    background-color: #E05131;
+    background-color: #31DF9F;
     outline: 2px solid black;
 }
 
