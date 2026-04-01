@@ -21,10 +21,11 @@ export function generateCSV() {
         "Fin passation",
         "Durée totale (s)",
         "Nombre total d'intervalles",
-        "C1", //Nombre d'occurrence de Se mordre
-        "C2", //Stéréotypie : %, Nb apparition cptmt, Nb total intervalles
+        "C1 / Nombre d'occurrences", //Nombre d'occurrence de Se mordre
+        "Type des données (C2 et C3)",
+        "C2", //Stéréotypie : Proportion, %, Nb apparition cptmt, Nb total intervalles
+        "C3", //Hors-Tâche : Proportion, %, Nb apparition cptmt, Nb total intervalles
         "C2VB", //Tableau Stéréotypie (valeurs brutes)
-        "C3", //Hors-Tâche : %, Nb apparition cptmt, Nb total intervalles
         "C3VB" //Tableau Hors-Tâche (valeurs brutes)
     ]);
 
@@ -37,9 +38,10 @@ export function generateCSV() {
         state.elapsedTime,
         state.nInterval,
         state.BEH1Count,
+        "Proportion",
         state.sampling.BEH2Prop.prop,
-        beh2Data[0] ?? "",
         state.sampling.BEH3Prop.prop,
+        beh2Data[0] ?? "",
         beh3Data[0] ?? ""
     ]);
 
@@ -47,18 +49,23 @@ export function generateCSV() {
     for (let i = 1; i < maxLength; i++) {
         rows.push([
             "", "", "", "", "", "", "",
+            // Type de données (C2 et C3)
+            i === 1 ? "Pourcentage" :
+                i === 2 ? "Nombre d'intervalles avec comportement" :
+                    i === 3 ? "Nombre total d'intervalles" :
+                        "",
             // C2
             i === 1 ? state.sampling.BEH2Prop.percent :
                 i === 2 ? state.sampling.BEH2Prop.trueCount :
                     i === 3 ? state.nInterval :
                         "",
-            // C2VB
-            beh2Data[i] ?? "",
             // C3
             i === 1 ? state.sampling.BEH3Prop.percent :
                 i === 2 ? state.sampling.BEH3Prop.trueCount :
                     i === 3 ? state.nInterval :
                         "",
+            // C2VB
+            beh2Data[i] ?? "",
             // C3VB
             beh3Data[i] ?? ""
         ]);
