@@ -26,7 +26,8 @@ export function generateCSV() {
         "C2", //Stéréotypie : Proportion, %, Nb apparition cptmt, Nb total intervalles
         "C3", //Hors-Tâche : Proportion, %, Nb apparition cptmt, Nb total intervalles
         "C2VB", //Tableau Stéréotypie (valeurs brutes)
-        "C3VB" //Tableau Hors-Tâche (valeurs brutes)
+        "C3VB", //Tableau Hors-Tâche (valeurs brutes)
+        "VB"
     ]);
 
     // Les valeurs principales (ligne 2 de rows)
@@ -42,7 +43,8 @@ export function generateCSV() {
         state.sampling.BEH2Prop.prop,
         state.sampling.BEH3Prop.prop,
         beh2Data[0] ?? "",
-        beh3Data[0] ?? ""
+        beh3Data[0] ?? "",
+        "0 = pas d'apparition du comportement"
     ]);
 
     // Lignes supplémentaire de rows pour les valeurs brutes de C2 et C3
@@ -67,7 +69,10 @@ export function generateCSV() {
             // C2VB
             beh2Data[i] ?? "",
             // C3VB
-            beh3Data[i] ?? ""
+            beh3Data[i] ?? "",
+            // VB
+            i === 1 ? "1 = apparition du comportement" :
+                ""
         ]);
     }
 
