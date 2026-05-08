@@ -34,33 +34,33 @@ beh1Btn.onclick = () => {
 export const beh2Btn = document.getElementById("btn-BEH2");
 export const beh3Btn = document.getElementById("btn-BEH3");
 
-if (state.condition === "TC") {
-    beh2Btn.onclick = () => {
-        if (!state.recordingOpen) return;
+beh2Btn.onclick = () => {
+    if (state.condition === "TS") return;
+    if (!state.recordingOpen) return;
 
-        const newValue = !state.sampling.BEH2[state.nInterval - 1];
-        state.sampling.BEH2[state.nInterval - 1] = newValue;
+    const newValue = !state.sampling.BEH2[state.nInterval - 1];
+    state.sampling.BEH2[state.nInterval - 1] = newValue;
 
-        updateSamplingButtonVisual(beh2Btn, newValue);
+    updateSamplingButtonVisual(beh2Btn, newValue);
 
-        updateLiveRecap();
+    updateLiveRecap();
 
-        //console.log("BEH2, intervalle :", state.nInterval, "→", newValue);
-    };
+    //console.log("BEH2, intervalle :", state.nInterval, "→", newValue);
+};
 
-    beh3Btn.onclick = () => {
-        if (!state.recordingOpen) return;
+beh3Btn.onclick = () => {
+    if (state.condition === "TS") return;
+    if (!state.recordingOpen) return;
 
-        const newValue = !state.sampling.BEH3[state.nInterval - 1];
-        state.sampling.BEH3[state.nInterval - 1] = newValue;
+    const newValue = !state.sampling.BEH3[state.nInterval - 1];
+    state.sampling.BEH3[state.nInterval - 1] = newValue;
 
-        updateSamplingButtonVisual(beh3Btn, newValue);
+    updateSamplingButtonVisual(beh3Btn, newValue);
 
-        updateLiveRecap();
+    updateLiveRecap();
 
-        //console.log("BEH3, intervalle :", state.nInterval, "→", newValue);
-    };
-}
+    //console.log("BEH3, intervalle :", state.nInterval, "→", newValue);
+};
 
 export function enableSamplingButtons() {
     beh2Btn.disabled = false;
