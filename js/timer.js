@@ -47,60 +47,65 @@ document.getElementById("btn-start").onclick = () => {
 
     console.log("Passation lancée");
 
-    // Lancement du chrono
-    state.timerId = setInterval(() => {
-        state.elapsedTime += 1;
+    if (state.condition === "TC") {
+        // Lancement du chrono
+        state.timerId = setInterval(() => {
+            state.elapsedTime += 1;
 
-        const timeInInterval = state.elapsedTime % INTERVAL_DURATION;
+            const timeInInterval = state.elapsedTime % INTERVAL_DURATION;
 
-        /*console.log(
-            `Temps écoulé: ${state.elapsedTime} 
-            | Intervalle: ${intervalIndex} 
-            | Temps dans intervalle: ${timeInInterval}`
-        );*/
+            /*console.log(
+                `Temps écoulé: ${state.elapsedTime} 
+                | Intervalle: ${intervalIndex} 
+                | Temps dans intervalle: ${timeInInterval}`
+            );*/
 
-        // Signal sonore
-        if (timeInInterval === SIGNAL_TIME) {
-            signal.currentTime = 0;
-            signal.play();
+            // Signal sonore
+            if (timeInInterval === SIGNAL_TIME) {
+                signal.currentTime = 0;
+                signal.play();
 
-            //console.log("signal");
-        }
+                //console.log("signal");
+            }
 
-        // Enregistrement pendant la fenêtre et nouvel intervalle
-        if (state.elapsedTime % INTERVAL_DURATION === 0) {
-            startProgressAnimation();
+            // Enregistrement pendant la fenêtre et nouvel intervalle
+            if (state.elapsedTime % INTERVAL_DURATION === 0) {
+                startProgressAnimation();
 
-            state.sampling.BEH2[state.nInterval] = false;
-            state.sampling.BEH3[state.nInterval] = false;
+                state.sampling.BEH2[state.nInterval] = false;
+                state.sampling.BEH3[state.nInterval] = false;
 
-            updateSamplingButtonVisual(beh2Btn, false);
-            updateSamplingButtonVisual(beh3Btn, false);
+                updateSamplingButtonVisual(beh2Btn, false);
+                updateSamplingButtonVisual(beh3Btn, false);
 
-            state.nInterval += 1;
+                state.nInterval += 1;
 
-            updateLiveRecap();
+                updateLiveRecap();
 
-            //console.log("Nouvel intervalle :", state.currentInterval+1);
-        }
+                //console.log("Nouvel intervalle :", state.currentInterval+1);
+            }
 
-        if (timeInInterval === 0 && state.elapsedTime !== 0) {
-            state.recordingOpen = true;
-            enableSamplingButtons();
+            if (timeInInterval === 0 && state.elapsedTime !== 0) {
+                state.recordingOpen = true;
+                enableSamplingButtons();
 
-            startProgressAnimationRecording();
+                startProgressAnimationRecording();
 
-            setTimeout(() => {
-                state.recordingOpen = false;
-                disableSamplingButtons();
-                stopProgressAnimationRecording();
-                //console.log("Fenêtre d'enregistrement fermée");
-            }, RECORDING_WINDOW);
-        }
+                setTimeout(() => {
+                    state.recordingOpen = false;
+                    disableSamplingButtons();
+                    stopProgressAnimationRecording();
+                    //console.log("Fenêtre d'enregistrement fermée");
+                }, RECORDING_WINDOW);
+            }
 
-    }, 1000); //1000ms
+        }, 1000); //1000ms
+
+    }
 
     showPage(3);
-    startProgressAnimation();
+    if (state.condition === "TC") {
+        startProgressAnimation();
+    }
     console.log(state);
 }

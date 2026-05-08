@@ -2,6 +2,7 @@
 export const state = {
     participantId: "",
     sessionId: "",
+    condition: "",
 
     // Chrono
     startTime: null,

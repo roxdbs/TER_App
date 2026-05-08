@@ -19,23 +19,17 @@ export function showPage(pageNumber) {
 // Gestion des boutons de navigation
 document.getElementById("btn-expe").onclick = () => {
     const inputPartId = document.getElementById("participant-id");
-    const inputSessIdd = document.querySelector('input[name="session"]:checked')?.value;
+    const inputSessId = document.querySelector('input[name="session"]:checked')?.value;
+    const inputCondId = document.querySelector('input[name="condition"]:checked')?.value;
 
-    if (!inputPartId.value.trim() && !inputSessIdd) {
-        alert("Veuillez renseigner l'identifiant du participant et le numéro de session.");
-        return;
-    }
-    else if (!inputPartId.value.trim()) {
-        alert("Veuillez renseigner l'identifiant du participant.");
-        return;
-    }
-    else if (!inputSessIdd) {
-        alert("Veuillez sélectionner un numéro de session.");
+    if (!inputPartId.value.trim() || !inputSessId || !inputCondId) {
+        alert("Veuillez renseigner l'identifiant du participant, le numéro de session et la complexité de la tâche.");
         return;
     }
 
     state.participantId = inputPartId.value.trim();
-    state.sessionId = inputSessIdd;
+    state.sessionId = inputSessId;
+    state.condition = inputCondId;
     showPage(2);
     console.log(state);
 }
@@ -50,20 +44,22 @@ document.getElementById("btn-end").onclick = () => {
     console.log("Passation terminée");
     console.log("Durée totale :", state.elapsedTime);
 
-    // Arrêt du chrono
-    clearInterval(state.timerId);
-    state.timerId = null;
+    if (state.condition === "TC") {
+        // Arrêt du chrono
+        clearInterval(state.timerId);
+        state.timerId = null;
 
-    state.sampling.BEH2Prop = calculateProportion(state.sampling.BEH2);
-    state.sampling.BEH3Prop = calculateProportion(state.sampling.BEH3);
+        state.sampling.BEH2Prop = calculateProportion(state.sampling.BEH2);
+        state.sampling.BEH3Prop = calculateProportion(state.sampling.BEH3);
+
+        document.getElementById("recap-BEH2-percentage").textContent = state.sampling.BEH2Prop.percent + " %";
+        document.getElementById("recap-BEH2").textContent = state.sampling.BEH2Prop.trueCount + "/" + state.nInterval;
+
+        document.getElementById("recap-BEH3-percentage").textContent = state.sampling.BEH3Prop.percent + " %";
+        document.getElementById("recap-BEH3").textContent = state.sampling.BEH3Prop.trueCount + "/" + state.nInterval;
+    }
 
     document.getElementById("recap-BEH1").textContent = state.BEH1Count;
-
-    document.getElementById("recap-BEH2-percentage").textContent = state.sampling.BEH2Prop.percent + " %";
-    document.getElementById("recap-BEH2").textContent = state.sampling.BEH2Prop.trueCount + "/" + state.nInterval;
-
-    document.getElementById("recap-BEH3-percentage").textContent = state.sampling.BEH3Prop.percent + " %";
-    document.getElementById("recap-BEH3").textContent = state.sampling.BEH3Prop.trueCount + "/" + state.nInterval;
 
     generateCSV();
     showPage(4);
