@@ -3,6 +3,7 @@ export const state = {
     participantId: "",
     sessionId: "",
     condition: "",
+    training: false,
 
     // Chrono
     startTime: null,
@@ -33,3 +34,27 @@ export const state = {
         }
     }
 };
+
+// Remise à zéro de toutes les données (utilisée à la fin de l'entraînement)
+export function resetState() {
+    state.participantId = "";
+    state.sessionId = "";
+    state.condition = "";
+    state.training = false;
+
+    state.startTime = null;
+    state.endTime = null;
+    state.startDateTime = "";
+    state.endDateTime = "";
+    state.elapsedTime = 0;
+    state.timerId = null;
+
+    state.nInterval = 0;
+    state.recordingOpen = false;
+
+    state.BEH1Count = 0;
+    state.sampling.BEH2 = [];
+    state.sampling.BEH3 = [];
+    state.sampling.BEH2Prop = { trueCount: 0, prop: 0, percent: 0 };
+    state.sampling.BEH3Prop = { trueCount: 0, prop: 0, percent: 0 };
+}

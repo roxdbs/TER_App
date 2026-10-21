@@ -51,6 +51,14 @@
 
 }
 
+#btn-training {
+    background-color: #D4CCEA;
+}
+
+#btn-training:hover {
+    background-color: #C2B8E1;
+}
+
 #btn-BEH1,
 #btn-BEH2,
 #btn-BEH3 {
