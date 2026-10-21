@@ -3,14 +3,14 @@ import { calculateProportion } from "./stats.js";
 
 //Mise à jour des récap de comportements
 export function updateLiveRecap() {
-    document.getElementById("recap-BEH1-live").textContent = state.BEH1Count;
+    const beh3Stats = calculateProportion(state.sampling.BEH3);
+    document.getElementById("recap-BEH3-live").textContent = beh3Stats.trueCount + "/" + state.nInterval;
 
     if (state.condition === "TC") {
+        document.getElementById("recap-BEH1-live").textContent = state.BEH1Count;
+
         const beh2Stats = calculateProportion(state.sampling.BEH2);
         document.getElementById("recap-BEH2-live").textContent = beh2Stats.trueCount + "/" + state.nInterval;
-
-        const beh3Stats = calculateProportion(state.sampling.BEH3);
-        document.getElementById("recap-BEH3-live").textContent = beh3Stats.trueCount + "/" + state.nInterval;
     }
 }
 
@@ -18,6 +18,8 @@ export function updateLiveRecap() {
 const beh1Btn = document.getElementById("btn-BEH1");
 
 beh1Btn.onclick = () => {
+    if (state.condition === "TS") return;
+
     state.BEH1Count += 1;
     //console.log("BEH1+1");
 
@@ -49,7 +51,6 @@ beh2Btn.onclick = () => {
 };
 
 beh3Btn.onclick = () => {
-    if (state.condition === "TS") return;
     if (!state.recordingOpen) return;
 
     const newValue = !state.sampling.BEH3[state.nInterval - 1];
@@ -63,7 +64,7 @@ beh3Btn.onclick = () => {
 };
 
 export function enableSamplingButtons() {
-    beh2Btn.disabled = false;
+    if (state.condition !== "TS") beh2Btn.disabled = false;
     beh3Btn.disabled = false;
 }
 

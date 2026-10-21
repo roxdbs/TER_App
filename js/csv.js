@@ -92,6 +92,14 @@ export function generateCSV() {
         URL.revokeObjectURL(url);
     }
     else {
+        const beh3Data = state.sampling.BEH3.map(value => value ? 1 : 0);
+
+        // Longueur maximale (nb de lignes)
+        const maxLength = Math.max(
+            beh3Data.length,
+            4 // Nb de lignes fixes pour C3
+        )
+
         const rows = []
 
         // Les noms de colonnes (ligne 1 de rows)
@@ -101,7 +109,12 @@ export function generateCSV() {
             "Condition (complexité tâche)",
             "Début passation",
             "Fin passation",
-            "C1 / Nombre d'occurrences", //Nombre d'occurrence de Se mordre
+            "Durée totale (s)",
+            "Nombre total d'intervalles",
+            "Type des données (C3)",
+            "C3", //Hors-Tâche : Proportion, %, Nb apparition cptmt, Nb total intervalles
+            "C3VB", //Tableau Hors-Tâche (valeurs brutes)
+            "VB"
         ]);
 
         // Les valeurs principales (ligne 2 de rows)
@@ -111,8 +124,35 @@ export function generateCSV() {
             state.condition,
             state.startDateTime,
             state.endDateTime,
-            state.BEH1Count
+            state.elapsedTime,
+            state.nInterval,
+            "Proportion",
+            state.sampling.BEH3Prop.prop,
+            beh3Data[0] ?? "",
+            "0 = pas d'apparition du comportement"
         ]);
+
+        // Lignes supplémentaire de rows pour les valeurs brutes de C3
+        for (let i = 1; i < maxLength; i++) {
+            rows.push([
+                "", "", "", "", "", "", "",
+                // Type de données (C3)
+                i === 1 ? "Pourcentage" :
+                    i === 2 ? "Nombre d'intervalles avec comportement" :
+                        i === 3 ? "Nombre total d'intervalles" :
+                            "",
+                // C3
+                i === 1 ? state.sampling.BEH3Prop.percent :
+                    i === 2 ? state.sampling.BEH3Prop.trueCount :
+                        i === 3 ? state.nInterval :
+                            "",
+                // C3VB
+                beh3Data[i] ?? "",
+                // VB
+                i === 1 ? "1 = apparition du comportement" :
+                    ""
+            ]);
+        }
 
         const csvContent = rows.map(r => r.join(",")).join("\n");
 
