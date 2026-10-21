@@ -30,6 +30,8 @@ document.getElementById("btn-expe").onclick = () => {
     state.participantId = inputPartId.value.trim();
     state.sessionId = inputSessId;
     state.condition = inputCondId;
+    // En tâche simple, "Se mordre" n'est plus observé : bouton inactif
+    document.getElementById("btn-BEH1").disabled = (state.condition === "TS");
     showPage(2);
     console.log(state);
 }
@@ -59,7 +61,20 @@ document.getElementById("btn-end").onclick = () => {
         document.getElementById("recap-BEH3").textContent = state.sampling.BEH3Prop.trueCount + "/" + state.nInterval;
     }
 
-    document.getElementById("recap-BEH1").textContent = state.BEH1Count;
+    else if (state.condition === "TS") {
+        // Arrêt du chrono
+        clearInterval(state.timerId);
+        state.timerId = null;
+
+        state.sampling.BEH3Prop = calculateProportion(state.sampling.BEH3);
+
+        document.getElementById("recap-BEH3-percentage").textContent = state.sampling.BEH3Prop.percent + " %";
+        document.getElementById("recap-BEH3").textContent = state.sampling.BEH3Prop.trueCount + "/" + state.nInterval;
+    }
+
+    if (state.condition !== "TS") {
+        document.getElementById("recap-BEH1").textContent = state.BEH1Count;
+    }
 
     generateCSV();
     showPage(4);

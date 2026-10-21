@@ -115,11 +115,13 @@
     background-color: #FCD95B;
 }
 
+#btn-BEH1:not(:disabled):hover,
 #btn-BEH2:not(:disabled):hover,
 #btn-BEH3:not(:disabled):hover {
     background-color: #DFC050;
 }
 
+#btn-BEH1:disabled,
 #btn-BEH2:disabled,
 #btn-BEH3:disabled {
     opacity: 0.5;
