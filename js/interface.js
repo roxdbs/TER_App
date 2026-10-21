@@ -1,4 +1,4 @@
-import { state } from "./state.js";
+import { state, resetState } from "./state.js";
 import { calculateProportion } from "./stats.js"
 import { generateCSV } from "./csv.js";
 
@@ -36,7 +36,63 @@ document.getElementById("btn-expe").onclick = () => {
     console.log(state);
 }
 
+// Entraînement : l'interface est celle de la condition TC (tous les boutons actifs)
+document.getElementById("btn-training").onclick = () => {
+    state.training = true;
+    state.condition = "TC";
+
+    document.getElementById("btn-BEH1").disabled = false;
+    document.getElementById("page-2-title").textContent = "Entraînement";
+    document.getElementById("btn-end").textContent = "Fin de l'entraînement";
+
+    showPage(2);
+}
+
+// Fin de l'entraînement : remise à zéro des données ET de l'interface, retour à la page 1
+function endTraining() {
+    clearInterval(state.timerId);
+    resetState();
+
+    // Textes remis comme avant
+    document.getElementById("page-2-title").textContent = "Observation de comportements";
+    document.getElementById("btn-end").textContent = "Fin de l'observation";
+
+    // Récapitulatifs en direct
+    ["BEH1", "BEH2", "BEH3"].forEach(id => {
+        document.getElementById(`recap-${id}-live`).textContent = "—";
+    });
+
+    // Boutons de comportement
+    document.getElementById("btn-BEH1").disabled = false;
+    document.getElementById("btn-BEH1").classList.remove("beh1-feedback");
+    ["btn-BEH2", "btn-BEH3"].forEach(id => {
+        const btn = document.getElementById(id);
+        btn.disabled = true;
+        btn.classList.remove("selected");
+    });
+
+    // Barre de progression
+    const fill = document.getElementById("interval-progress-fill");
+    fill.style.transition = "none";
+    fill.style.width = "0%";
+    fill.classList.remove("recording");
+    document.getElementById("interval-progress").classList.remove("recording");
+
+    // Signal sonore
+    const signal = document.getElementById("signal");
+    signal.pause();
+    signal.currentTime = 0;
+
+    showPage(1);
+}
+
 document.getElementById("btn-end").onclick = () => {
+    // Fin de l'entrainement
+    if (state.training) {
+        endTraining();
+        return;
+    }
+
     // Enregistrement de la fin de la passation
     const end = new Date();
 
